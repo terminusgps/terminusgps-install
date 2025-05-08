@@ -1,0 +1,15 @@
+<form action="{% url 'install:scan vin' %}" action="post" class="{{ class }}" hx-post="{% url 'install:scan vin' %}" hx-encoding="multipart/form-data">
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="inset-shadow w-full p-2 text-red-600">{{ form.non_field_errors }}</div>{% endif %}
+    <div class="flex w-full flex-col gap-2 has-[#errors]:bg-red-200 has-[#errors]:p-2">
+        {{ form.image.label }}
+        {{ form.image }}
+        {% if form.image.errors %}
+        <div class="border border-red-800 bg-red-100 p-2 text-red-600">{{ form.image.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="mt-4 flex flex-col gap-2">
+        <input hx-trigger="click" class="w-full cursor-pointer rounded border bg-red-600 p-2 text-center transition-colors duration-150 ease-in-out hover:bg-red-300" type="submit" value="Submit">
+        <a href="{% url 'install:dashboard' %}" class="w-full cursor-pointer rounded border bg-gray-400 p-2 text-center transition-colors duration-150 ease-in-out hover:bg-gray-200" hx-boost="true">Back</a>
+    </div>
+</form>

@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import importlib.util
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "terminusgps_install.apps.TerminusgpsInstallConfig",
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "src.urls"
@@ -125,7 +126,3 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-if importlib.util.find_spec("django_browser_reload") is not None:
-    INSTALLED_APPS.append("django_browser_reload")
-    MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
